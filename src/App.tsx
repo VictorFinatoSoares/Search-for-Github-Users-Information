@@ -1,5 +1,4 @@
-// Define as rotas de cada página
-
+// Define as rotas para cada página
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { SearchUser } from "./pages/SearchUser";

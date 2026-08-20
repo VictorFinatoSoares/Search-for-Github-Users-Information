@@ -2,7 +2,7 @@
 
 import { Header } from "../components/Header";
 
-// Exibirá os erros de pesquisa caso necessário
+// Exibirá os erros de pesquisa quando necessário
 import toast from "react-hot-toast";
 
 import { useNavigate } from "react-router-dom";
@@ -12,24 +12,24 @@ export function SearchUser() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
 
-  // Função que válida se o formato da pesquisa está válido e redireciona para a página de users passando o username como parâmetro
   function onSubmitUserName(event: SubmitEvent<HTMLFormElement>) {
     // Evita atualização da página
     event.preventDefault();
 
-    // Remove espaços desnecessáriso do username
+    // Remove espaços desnecessários do username
     const formattedUsername = username.trim();
 
     // Caso nada tenha sido digitado
     if (!formattedUsername) {
       toast.error("You need to provide the username.");
       return;
-      // Caso haja espaços entre as palavras (ex: octo cat), exibe um erro pois o login de um usuário é sem espaços
+      // Caso haja espaços entre as palavras (ex: victor finato), exibe um erro pois o login de um usuário vindo da API é sem espaços
     } else if (formattedUsername.includes(" ")) {
       toast.error("The username cannot contain spaces.");
       return;
     }
 
+    // Redireciona quando válido
     navigate(`/users/${encodeURIComponent(formattedUsername)}`);
   }
 

@@ -1,5 +1,3 @@
-// Página simples dividida em componentes
-
 import { Header } from "../components/Header";
 import { MainCard } from "../components/UserInformationComponents/MainCard";
 

@@ -1,5 +1,4 @@
-// Componente simples para o card do usuário, recebe os dados obtidos no MainCard.tsx e renderiza aqui
-
+// Componente separado apenas para exibir as informações do usuário
 import type { UserData } from "../../types/datatypes";
 
 interface UserCardProps {

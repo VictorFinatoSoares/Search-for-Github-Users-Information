@@ -1,5 +1,3 @@
-// Componente de cabeçalho simples
-
 import githubLogo from "../assets/github_logo.png";
 
 export function Header() {

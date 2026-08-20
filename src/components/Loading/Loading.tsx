@@ -1,4 +1,4 @@
-// Componente simples que exibe um spinner de carregamento
+// Spinner de carregamento
 
 export function Loading() {
   return (

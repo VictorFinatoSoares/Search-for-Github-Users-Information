@@ -4,21 +4,22 @@ import { useEffect, useRef } from "react";
 
 import type { RepositoryData } from "../../types/datatypes";
 
-// Dados necessários para exibir o repositório e fechar o modal
+// O modal usa as informações do repositório selecionado e uma função quando for fechado
 interface ModalProps {
   repository: RepositoryData;
   onClose: () => void;
 }
 
 export function Modal({ repository, onClose }: ModalProps) {
-  // Referência usada para direcionar o foco ao botão quando o modal é aberto
+  // Referência usada para o foco ir para o botão de fechar
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
+  // Effect sempre que o modal é aberto
   useEffect(() => {
-    // Guarda o estado atual da rolagem da página.
+    // Guarda o estado atual da rolagem da página
     const previousOverflow = document.body.style.overflow;
 
-    // Permite fechar o modal pelo teclado com ESC.
+    // Permite fechar o modal pelo teclado com ESC
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         onClose();
@@ -74,7 +75,7 @@ export function Modal({ repository, onClose }: ModalProps) {
           </button>
         </div>
 
-        {/* Exibe um texto padrão quando o repositório não possui descrição */}
+        {/* Exibe um texto padrão quando o repositório não possui descrição*/}
         <p id="repository-modal-description" className="mt-4 text-gray-300">
           {repository.description || "No description provided."}
         </p>
@@ -83,7 +84,7 @@ export function Modal({ repository, onClose }: ModalProps) {
           <div>
             <dt className="text-gray-400">Language</dt>
             <dd className="mt-1 text-gray-100">
-              {/* A linguagem também pode ser null na resposta da API */}
+              {/* A linguagem também pode ser null na resposta da API*/}
               {repository.language || "Not provided."}
             </dd>
           </div>
@@ -95,7 +96,7 @@ export function Modal({ repository, onClose }: ModalProps) {
           </div>
         </dl>
 
-        {/* Abre a página do repositório em uma nova aba */}
+        {/* Abre a página do repositório em uma nova aba*/}
         <a
           href={repository.html_url}
           target="_blank"

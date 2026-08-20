@@ -1,5 +1,5 @@
-// Componente simples para a lista de repositórios, recebe os dados do MainCard.tsx e renderiza aqui
-// Também é responsável por renderizar o Modal dependendo do repositório selecionado
+// Componente separado para a lista de repositórios do usuário
+// O modal também é usado aqui, usando o repositório selecionado
 
 import { useState } from "react";
 
@@ -65,10 +65,8 @@ export function RepositoryListCard({ repositories }: RepositoriesCardProps) {
       {/*Se o usuário clicou em um repositório, ele renderiza o modal com as informações completas desse repositório*/}
       {selectedRepository && (
         <Modal
-          // Recebe as infos completas
-          repository={selectedRepository}
-          // Caso o usuário feche o modal, ele deixa o estado do repositório selecionado como vazio
-          onClose={() => setSelectedRepository(null)}
+          repository={selectedRepository} // Recebe as informações
+          onClose={() => setSelectedRepository(null)} // Caso o usuário feche o modal, deseleciona o repositório.
         />
       )}
     </>

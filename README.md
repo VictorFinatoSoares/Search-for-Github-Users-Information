@@ -1,8 +1,19 @@
-# Busca de Usuários do GitHub
+# Módulo 2: Desafio Final | Search for User Information
 
-Encontrar informações de um usuário do GitHub pode envolver diferentes requisições, estados de carregamento e tratamentos de erro. Neste projeto, foi desenvolvida uma aplicação responsiva que permite pesquisar um usuário pelo seu _username_ e visualizar seus dados públicos e repositórios.
+Enunciado do desafio proposto: Crie uma aplicação responsiva até tablet, onde deverá ter uma tela com um campo de pesquisa que será inserido um nome de usuário do GitHub e então, duas requisições serão feitas para as seguintes APIs:
 
-A aplicação consulta a API pública do GitHub e apresenta as informações em uma interface organizada em cards. Também é possível selecionar um repositório para visualizar detalhes adicionais em um modal.
+https://api.github.com/users/{username}
+https://api.github.com/users/{username}/repos
+
+Após as requisições serem feitas, apresente em uma nova página os dados do usuário como: foto/avatar, nome, descrição da bio e também sua lista de repositórios.
+
+Os repositórios precisam ser exibidos em formato de card, trazendo as seguintes informações: nome (name) e descrição (description).
+
+Ao clicar em um repositório, um modal deverá ser aberto com informações mais detalhadas:
+
+Tipo de privacidade (visibility), link de acesso ao projeto (html_url), descrição (description) e linguagem (language).
+
+A aplicação precisa ter validações para que não seja possível pesquisar sem digitar no campo, também deverá ter um loading indicando o momento em que a requisição está sendo feita e exibir mensagem de erro caso ocorra algum problema na requisição.
 
 A aplicação possui as seguintes funcionalidades:
 
@@ -13,31 +24,15 @@ A aplicação possui as seguintes funcionalidades:
 - Apresentação dos dados públicos do usuário
 - Listagem dos repositórios em cards
 - Modal com informações detalhadas de cada repositório
-- Cancelamento de requisições pendentes
 - Interface responsiva para celulares e tablets
 
-Tudo isso usando React, TypeScript, Axios, React Router e Tailwind CSS.
-
-## Antes de começar:
+## Antes de começar
 
 Para executar o projeto, faça o clone do repositório, instale as dependências e inicie o servidor de desenvolvimento:
 
 ```bash
 npm install
 npm run dev
-```
-
-Depois, acesse o endereço exibido pelo Vite no terminal.
-
-Também estão disponíveis os seguintes comandos:
-
-```bash
-# Verificar o código com o ESLint
-npm run lint
-
-# Gerar a versão de produção
-npm run build
-
 ```
 
 ### A API
@@ -99,10 +94,6 @@ O modal pode ser fechado pelo botão, pela tecla `ESC` ou por um clique no fundo
 - Usuários inexistentes recebem uma mensagem de erro específica.
 - Falhas de conexão e erros da API são tratados na interface.
 - O limite de requisições da API do GitHub possui tratamento próprio.
-- Requisições pendentes são canceladas com `AbortController` quando o componente é desmontado ou a pesquisa muda.
-
-> [!NOTE]
-> O cancelamento evita que uma requisição antiga atualize a interface depois que o usuário já saiu da página ou iniciou outro fluxo.
 
 **Responsividade e acessibilidade**
 
@@ -112,7 +103,7 @@ O modal pode ser fechado pelo botão, pela tecla `ESC` ou por um clique no fundo
 - O modal possui semântica de diálogo, foco inicial e suporte à tecla `Esc`.
 - Os elementos interativos possuem estados visuais de foco.
 
-## Tecnologias utilizadas
+## Tecnologias que utilizei
 
 - React
 - TypeScript
@@ -123,7 +114,7 @@ O modal pode ser fechado pelo botão, pela tecla `ESC` ou por um clique no fundo
 - React Hot Toast
 - GitHub REST API
 
-## 📁 Organização do projeto
+### Como o projeto ficou estruturado
 
 ```text
 src/
@@ -131,7 +122,8 @@ src/
 ├── components/                     # Componentes reutilizáveis
 │   ├── Loading/                    # Indicador de carregamento
 │   ├── Modal/                      # Detalhes do repositório
-│   └── UserInformationComponents/ # Cards de usuário e repositórios
+│   └── UserInformationComponents/  # Cards de usuário e repositórios
+├── hooks/                          # Hook personalizado para buscar os dados
 ├── pages/                          # Páginas e rotas da aplicação
 ├── services/                       # Configuração e chamadas da API
 ├── types/                          # Tipos dos dados recebidos
@@ -144,7 +136,6 @@ src/
 - Requisições HTTP com Axios
 - Requisições paralelas com `Promise.all`
 - Tratamento de respostas e erros
-- Cancelamento com `AbortController`
 - Tipagem de dados externos com TypeScript
 
 #### React e navegação
@@ -160,5 +151,4 @@ src/
 - Layout responsivo com Tailwind CSS
 - Estados de carregamento e erro
 - Validação de formulário
-- Modal acessível
 - Feedback visual para interações
